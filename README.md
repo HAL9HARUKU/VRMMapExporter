@@ -14,6 +14,9 @@ MIT
 [はるく](https://twitter.com/HAL9_HARUKU)
 
 ## 履歴
+2020/05/23 v0.3.0
+最新の環境でブレンドシェイプが動くように修正。
+
 2019/11/24 v0.2.0
 ブレンドシェイプのマッピング情報を追加。
 名称を BoneMapExporter から VRMMapExporter に変更。

@@ -107,11 +107,13 @@ public class VRMMapExporter : EditorWindow
 
             foreach (var value in clip.Values)
             {
-                if (!tempBlendShapeState.ContainsKey(value.RelativePath))
+                string name = GetName(value.RelativePath);
+                
+                if (!tempBlendShapeState.ContainsKey(name))
                 {
-                    tempBlendShapeState.Add(value.RelativePath, new List<object>());
+                    tempBlendShapeState.Add(name, new List<object>());
                 }
-                tempBlendShapeState[value.RelativePath].Add(new Dictionary<string, object> { { "Index", value.Index }, { "Weight", value.Weight } });
+                tempBlendShapeState[name].Add(new Dictionary<string, object> { { "Index", value.Index }, { "Weight", value.Weight } });
             }
             foreach (var state in tempBlendShapeState)
             {
@@ -138,5 +140,14 @@ public class VRMMapExporter : EditorWindow
         writer.Close();
 
         Debug.Log("<b><color=green>Export Successful.</color></b> path = " + path);
+    }
+    private static string GetName(string path)
+    {
+        int index = path.LastIndexOf("/");
+        if (index < 0)
+        {
+            return path;
+        }
+        return path.Substring(index + 1);
     }
 }
